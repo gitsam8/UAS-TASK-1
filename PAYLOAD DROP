@@ -1,0 +1,51 @@
+#program to import file with coordinates use equation of trajectory in spherical coordinate system
+import math 
+def haversine(lat1, lon1, lat2, lon2):
+    
+    dLat = (lat2 - lat1) * math.pi / 180.0
+    dLon = (lon2 - lon1) * math.pi / 180.0
+ 
+
+    lat1 = (lat1) * math.pi / 180.0
+    lat2 = (lat2) * math.pi / 180.0
+ 
+
+    a = (pow(math.sin(dLat / 2), 2) +
+         pow(math.sin(dLon / 2), 2) *
+             math.cos(lat1) * math.cos(lat2));
+    rad = 6371
+    c = 2 * math.asin(math.sqrt(a))
+    return rad * c
+
+     
+   
+     
+
+
+get=str(input('enter vals in str :'))
+get2 = str(input('enter vals in str :'))
+file1=open("file1","w")
+file1.write(get)
+file1.close()
+file2=open("file2","w")
+file2.write(get2)
+file2.close()
+file1=open("file1","r")
+file2=open("file2","r")
+st1= file1.read()
+st2=file2.read()
+st1=st1.split()
+st2=st2.split()
+print(st1)
+print(st2)
+lat_p,lon_p,vel_x,vel_y=tuple(st1)
+vel_x = float(vel_x)
+vel_y = float(vel_y)
+lat_p = float(lat_p)
+lon_p = float(lon_p)
+lat_target,lon_target=tuple(st2)
+lat_target = float(lat_target)
+lon_target = float(lon_target)
+dck = haversine(lat_p,lon_p,lat_target,lon_target)
+print(dck)
+
